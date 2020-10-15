@@ -12,10 +12,10 @@ const { InitiatorMessageTypes, ReceiverMessageTypes } = require('./message-types
  * @param {object} options
  * @param {number} options.id
  * @param {string} options.name
- * @param {function(*)} options.send Called to send data through the stream
- * @param {function(Error)} [options.onEnd] Called whenever the stream ends
- * @param {string} [options.type] One of ['initiator','receiver']. Defaults to 'initiator'
- * @param {number} [options.maxMsgSize] Max size of an mplex message in bytes. Writes > size are automatically split. Defaults to 1MB
+ * @param {function(*)} options.send - Called to send data through the stream
+ * @param {function(Error)} [options.onEnd] - Called whenever the stream ends
+ * @param {string} [options.type] - One of ['initiator','receiver']. Defaults to 'initiator'
+ * @param {number} [options.maxMsgSize] - Max size of an mplex message in bytes. Writes > size are automatically split. Defaults to 1MB
  * @returns {*} A muxed stream
  */
 module.exports = ({ id, name, send, onEnd = () => {}, type = 'initiator', maxMsgSize = MAX_MSG_SIZE }) => {
@@ -50,7 +50,7 @@ module.exports = ({ id, name, send, onEnd = () => {}, type = 'initiator', maxMsg
     }
   }
 
-  const stream = {    
+  const stream = {
     // Close for both Reading and Writing
     close: () => Promise.all([
       stream.closeRead(),
